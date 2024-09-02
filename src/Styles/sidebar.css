@@ -1,0 +1,41 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+    background-color: #ffffff; /* White background for the sidebar */
+    padding: 10px 0;
+    height: 100vh;
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the sidebar */
+    margin: 10px; /* Add margin to separate sidebar from edges */
+  }
+  
+  .sidebar-icon {
+    margin: 20px 0;
+  }
+  
+  .icon {
+    font-size: 28px;
+    color: #1a1a1a;
+  }
+  
+  .top-icon {
+    color: #00d089; /* Green color for the top shopping bag icon */
+  }
+  
+  .store-icon {
+    background-color: #1a1a1a;
+    color: #ffffff; /* White color for the store icon */
+    padding: 10px;
+    border-radius: 10px; /* Rounded square for store icon */
+  }
+  
+  .bottom-icon {
+    color: #ff3b30; /* Red color for the logout icon */
+  }
+  
+  .logout-icon {
+    margin-top: auto; /* Pushes the logout icon to the bottom */
+  }
+  

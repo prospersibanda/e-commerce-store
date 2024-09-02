@@ -1,0 +1,10 @@
+.dashboard{
+    display: flex;
+    flex-direction: row; 
+}
+.main-content {
+    flex: 1; /* This allows the main content area to take up the remaining space */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    padding: 20px;
+  }
