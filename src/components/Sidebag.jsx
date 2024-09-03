@@ -1,11 +1,12 @@
 import React from 'react';
 import '../Styles/Dashboard/sidebag.css';
+import { FaShoppingBag } from 'react-icons/fa';
 
 const bagItems = [
-    { id: 1, image: 'path-to-your-image-1' },
-    { id: 2, image: 'path-to-your-image-2' },
-    { id: 3, image: 'path-to-your-image-3' },
-    { id: 4, image: 'path-to-your-image-4' },
+    { id: 1, image: '/img/products/iphone15.jpg' },
+    { id: 2, image: '/img/products/iphone15.jpg' },
+    { id: 3, image: '/img/products/iphone15.jpg' },
+    { id: 4, image: '/img/products/iphone15.jpg' },
 ];
 
 const Sidebag = () => {
@@ -20,7 +21,7 @@ const Sidebag = () => {
                 ))}
             </div>
             <button className="view-bag-button">
-                <span className="icon">👜</span> View Bag
+                <span className="bag-icon"><FaShoppingBag/></span> View Bag
             </button>
         </div>
     );

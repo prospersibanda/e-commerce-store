@@ -19,6 +19,9 @@
     font-size: 28px;
     color: #1a1a1a;
   }
+  .bag-icon{
+    margin-right: 5px;
+  }
   
   .top-icon {
     color: #00d089; /* Green color for the top shopping bag icon */
