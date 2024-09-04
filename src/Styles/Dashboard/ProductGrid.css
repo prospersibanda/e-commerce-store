@@ -15,6 +15,14 @@
     position: relative;
     transition: transform 0.3s ease;
 }
+.add-bagIcon{
+    color: white;
+    background-color: black;
+    font-size: 0.7em;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 40px;
+}
 
 .product-card:hover {
     transform: translateY(-5px);

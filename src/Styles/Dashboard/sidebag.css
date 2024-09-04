@@ -3,14 +3,18 @@
     top: 0;
     right: 0;
     width: 20%;
-    height: 100%;
-    background-color: #f8f8f8;
+    height: 80vh;
+    margin-top: 50px;
+    background: #ededed;
+    border-left: 3px solid black;
     padding: 20px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+}
+body{
+    background: #ededed !important;
 }
 
 .bag-title {

@@ -25,6 +25,7 @@
   
   .top-icon {
     color: #00d089; /* Green color for the top shopping bag icon */
+    width: 40px;
   }
   
   .store-icon {

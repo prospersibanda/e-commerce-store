@@ -3,10 +3,10 @@ import '../Styles/Dashboard/sidebag.css';
 import { FaShoppingBag } from 'react-icons/fa';
 
 const bagItems = [
-    { id: 1, image: '/img/products/iphone15.jpg' },
-    { id: 2, image: '/img/products/iphone15.jpg' },
-    { id: 3, image: '/img/products/iphone15.jpg' },
-    { id: 4, image: '/img/products/iphone15.jpg' },
+    { id: 1, image: '/img/products/laptop.png' },
+    { id: 2, image: '/img/products/blueiphone11.png' },
+    { id: 3, image: '/img/products/whiteiphone11.png' },
+    { id: 4, image: '/img/products/blackiphone11.png' },
 ];
 
 const Sidebag = () => {

@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import CardSelection from '../components/CardSelection';
+import AddNewCard from '../components/AddNewCard';
+import '../Styles/PaymentPage/PaymentPage.css';
 
-const Payment = () => {
-  return (
-    <div>Payment</div>
-  )
-}
+const PaymentPage = () => {
+    return (
+        <div className="payment-page">
+            <CardSelection />
+            <AddNewCard />
+        </div>
+    );
+};
 
-export default Payment
+export default PaymentPage;

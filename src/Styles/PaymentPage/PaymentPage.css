@@ -1,0 +1,13 @@
+.payment-page {
+    max-width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+    .payment-page {
+        padding: 10px;
+    }
+}

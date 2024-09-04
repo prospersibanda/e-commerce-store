@@ -2,12 +2,13 @@ import React from 'react';
 import '../Styles/sidebar.css';
 import { FaShoppingBag, FaBars, FaStore, FaLock, FaSignOutAlt } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import logoImage  from '../Assets/logo.png';
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <NavLink to="/" className="sidebar-icon">
-        <FaShoppingBag className="icon top-icon" />
+        <img src={logoImage} className="icon top-icon" />
       </NavLink>
       <NavLink to="/" className="sidebar-icon">
         <FaBars className="icon" />
