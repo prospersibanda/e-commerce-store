@@ -66,6 +66,10 @@ function CartItems({ cartItems, setCartItems }) {
     );
 }
 
+function handleQuantityChange({}){
+  console.log("Quantity changed");
+}
+
 function OrderSummary({ cartItems }) {
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
