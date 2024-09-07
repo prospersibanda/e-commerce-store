@@ -5,6 +5,13 @@
     padding: 20px;
     font-family: Arial, sans-serif;
 }
+.product-page-section{
+    width: 70%;
+}
+.detail-page{
+    display: flex;
+    flex-direction: row;
+}
 
 @media (max-width: 768px) {
     .payment-page {
