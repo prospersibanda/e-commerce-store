@@ -2,6 +2,7 @@ import React from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { useSelector } from 'react-redux';  // Import useSelector to access Redux state
 import '../Styles/Dashboard/ProductGrid.css';
+import addCartBtn from '../Assets/addCartBtn.png';
 
 const ProductGrid = () => {
     // Access the products data from the Redux store
@@ -17,7 +18,7 @@ const ProductGrid = () => {
                     <div className='product-info'>
                         <h3 className="product-name">{product.name}</h3>
                         <p className="product-description">{product.description}</p>
-                        <div className="product-price">{product.price}<MdAddShoppingCart className='add-bagIcon'/></div>
+                        <div className="product-price">{product.price}<img src={addCartBtn} className='add-bagIcon'/></div>
                     </div>
                 </div>
             ))}
