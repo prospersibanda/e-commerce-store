@@ -1,5 +1,4 @@
 import React from 'react';
-import { MdAddShoppingCart } from 'react-icons/md';
 import { useSelector } from 'react-redux';  // Import useSelector to access Redux state
 import '../Styles/Dashboard/ProductGrid.css';
 import addCartBtn from '../Assets/addCartBtn.png';
