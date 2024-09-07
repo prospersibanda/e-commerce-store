@@ -30,4 +30,13 @@
     font-size: 16px;
     opacity: 1; /* Ensure placeholder is visible */
   }
-  
+  @media screen and (max-width: 750px) {
+    .search-container{
+      margin-left: 0;
+      margin-right: 100px;
+    }
+    .search-input{
+      width: 350px;
+    }
+    
+  }

@@ -10,12 +10,12 @@ import Sidebag from '../components/Sidebag';
 const Dashboard = () => {
   return (
     <div className='dashboard'>
-      <Sidebar />
+      <Sidebar className='sidebar'/>
       <div className='main-content'>
         <SearchBar />
         <ProductGrid/>
       </div>
-      <Sidebag/>
+      <Sidebag className='sidebag'/>
     </div>
   );
 }

@@ -2,24 +2,24 @@ import React from 'react';
 import '../Styles/sidebar.css';
 import { FaShoppingBag, FaBars, FaStore, FaLock, FaSignOutAlt } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
-import logoImage  from '../Assets/logo.png';
+import logoImage from '../Assets/logo.png';
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <NavLink to="/" className="sidebar-icon">
-        <img src={logoImage} className="icon top-icon" />
+      <NavLink to="/" className={({ isActive }) => `sidebar-icon ${isActive ? 'active' : ''}`}>
+        <img src={logoImage} className="icon top-icon" alt="Logo" />
       </NavLink>
-      <NavLink to="/" className="sidebar-icon">
+      <NavLink to="/menu" className={({ isActive }) => `sidebar-icon ${isActive ? 'active' : ''}`}>
         <FaBars className="icon" />
       </NavLink>
-      <NavLink to="/" className="sidebar-icon">
+      <NavLink to="/" className={({ isActive }) => `sidebar-icon ${isActive ? 'active' : ''}`}>
         <FaStore className="icon store-icon" />
       </NavLink>
-      <NavLink to="/bag" className="sidebar-icon">
-        <FaShoppingBag className="icon" />
+      <NavLink to="/bag" className={({ isActive }) => `sidebar-icon ${isActive ? 'active' : ''}`}>
+        <FaShoppingBag className="icon bag-icon" />
       </NavLink>
-      <NavLink to="/" className="sidebar-icon logout-icon">
+      <NavLink to="/logout" className={({ isActive }) => `sidebar-icon logout-icon ${isActive ? 'active' : ''}`}>
         <FaSignOutAlt className="icon bottom-icon" />
       </NavLink>
     </div>
