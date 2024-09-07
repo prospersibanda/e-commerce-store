@@ -4,6 +4,8 @@ body{
 .dashboard{
     display: flex;
     flex-direction: row; 
+    flex-wrap: wrap; /* Allow flex items to wrap for smaller screens */
+    width: 100%;
 }
 .main-content {
     flex: 1; /* This allows the main content area to take up the remaining space */
@@ -13,4 +15,35 @@ body{
     width: 100%;
     justify-content: center; /* Center horizontally */
     padding: 20px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    .dashboard {
+      flex-direction: column;
+    }
+  
+    .main-content {
+      padding: 10px;
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .dashboard {
+      flex-direction: column;
+    }
+  
+    .main-content {
+      padding: 5px;
+    }
+  
+    .search-bar {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .sidebag {
+      display: none; /* Optionally hide sidebag on very small screens */
+    }
   }
