@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './checkout.css';
 
 function Checkout() {
     const [address, setAddress] = useState("");
