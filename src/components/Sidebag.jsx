@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../Styles/Dashboard/sidebag.css';
 import { FaShoppingBag } from 'react-icons/fa';
 
@@ -10,6 +11,11 @@ const bagItems = [
 ];
 
 const Sidebag = () => {
+    const navigate = useNavigate(); // Hook to programmatically navigate
+
+    const handleClick = () => {
+      navigate('/bag'); // Navigate to the /bag route
+    };
     return (
         <div className="shopping-bag">
             <h3 className="bag-title">Bag</h3>
@@ -20,7 +26,7 @@ const Sidebag = () => {
                     </div>
                 ))}
             </div>
-            <button className="view-bag-button">
+            <button className="view-bag-button" onClick={handleClick}>
                 <span className="bag-icon"><FaShoppingBag/></span> View Bag
             </button>
         </div>
