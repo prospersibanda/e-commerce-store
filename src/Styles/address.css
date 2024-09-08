@@ -4,8 +4,9 @@ span {
 
 .address-container {
   background-color: #ededed;
-  margin-left: 245px;
-  margin-right: 245px;
+  width:70%;
+  display: block;
+  margin: 0 auto;
   margin-top: 60px;
   margin-bottom: 50px;
   padding-top: 10px;
@@ -53,7 +54,7 @@ font-size: 14px;
 .address-form input[type="button"] {
   background-color: black;
   color: white;
-  width: 95%;
+  width: 93%;
   padding: 6px;
   border-radius: 6px;
   border: 1px solid black;
@@ -69,7 +70,18 @@ font-size: 14px;
   width: 90% !important;
 }
 
+
+.lock {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-top: 17px;
+  font-size: medium;
+}
 .connection {
   color: #4CAF50 !important;
   margin-top: 36px;
+  margin-left: 8px;
 }

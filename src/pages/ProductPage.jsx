@@ -4,6 +4,7 @@ const ProductPage = () => {
   return (
     <div>
       <div className="product-page-section">
+        <img src="./products/img/watch.png" alt="A SE edition time-piece."/>
         <h1>Apple Watch</h1>
         <h3>Series 5 SE </h3>
         <h5>$ 529.99</h5>

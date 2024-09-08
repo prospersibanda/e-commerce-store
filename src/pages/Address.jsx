@@ -1,5 +1,6 @@
 import React from "react"; 
 import '../Styles/address.css';
+import {FaLock} from 'react-icons/fa';
 
 const Address = () => {
   return (
@@ -32,7 +33,7 @@ const Address = () => {
         <input type="button" value="Add Address" /> <br/> <br/> <br/>
         <span class="last-details">
         <a href="/">Back</a>
-        <p class="connection">Secure Connection</p>
+      <span className="lock"><FaLock className="icon"/><p class="connection">Secure Connection</p></span>
         </span>
       </form>
     </div>
