@@ -3,8 +3,8 @@ import Dashboard from './pages/Dashboard';
 import ProductPage from './pages/ProductPage';
 import Payment from './pages/Payment';
 import Checkout from './pages/Checkout';
-import Bag from './pages/Bag';
 import Address from './pages/Address';
+import BagPage from './pages/BagPage';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard/>} />
             <Route path="/productpage" element={<ProductPage/>} />
-            <Route path="/bag" element={<Bag/>} />
+            <Route path="/bag" element={<BagPage/>} />
             <Route path="/checkout" element={<Checkout/>} />
             <Route path="/address" element={<Address/>} />
             <Route path="/payment" element={<Payment/>} />

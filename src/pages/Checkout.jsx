@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import '../Styles/checkout.css';
 
-function Checkout() {
-    const [address, setAddress] = useState("");
-    const [paymentMethod, setPaymentMethod] = useState("");
-    const [cartItems, setCartItems] = useState([]);
+function CheckoutPage() {
+    const [address, setAddress] = useState("123 Place Grond Street, Vermont, California");
+    const [paymentMethod, setPaymentMethod] = useState("mastercard");
+    const [cartItems, setCartItems] = useState([
+        { name: "Dell XPS 13", price: 1799.99, quantity: 1 },
+        { name: "Iphone 11", price: 999.99, quantity: 1 }
+    ]);
 
     const handlePlaceOrder = () => {
-        // Handle order placement logic here
+        alert("Order placed successfully!");
     };
 
     return (
         <div className="checkout-page">
             <ShippingAddress address={address} setAddress={setAddress} />
             <PaymentMethod paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
-            <CartItems cartItems={cartItems} setCartItems={setCartItems} />
+            <ReviewYourBag cartItems={cartItems} setCartItems={setCartItems} />
             <OrderSummary cartItems={cartItems} />
-            <button onClick={handlePlaceOrder}>Place Order</button>
+            <button onClick={handlePlaceOrder}>Place your order</button>
         </div>
     );
 }
@@ -25,12 +28,10 @@ function ShippingAddress({ address, setAddress }) {
     return (
         <div className="shipping-address">
             <h2>Shipping Address</h2>
-            <input
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Enter your address"
-            />
+            <p>John Maker</p>
+            <p>{address}</p>
+            <p>United States of America</p>
+            <button>Change</button>
         </div>
     );
 }
@@ -39,49 +40,57 @@ function PaymentMethod({ paymentMethod, setPaymentMethod }) {
     return (
         <div className="payment-method">
             <h2>Payment Method</h2>
-            <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
-                <option value="mastercard">MasterCard</option>
-                <option value="visa">Visa</option>
-                <option value="paypal">PayPal</option>
-            </select>
+            <p><i className="fa fa-credit-card"></i> Mastercard ending in 1252</p>
+            <p><i className="fa fa-gift"></i> $53.21 gift card balance</p>
+            <label>
+                <input type="checkbox" checked /> Billing address same as Shipping Address
+            </label>
+            <button>Change</button>
         </div>
     );
 }
 
-function CartItems({ cartItems, setCartItems }) {
+function ReviewYourBag({ cartItems, setCartItems }) {
     return (
-        <div className="cart-items">
+        <div className="review-your-bag">
             <h2>Review Your Bag</h2>
             {cartItems.map((item, index) => (
                 <div key={index} className="cart-item">
                     <p>{item.name}</p>
-                    <p>{item.price}</p>
-                    <input
-                        type="number"
-                        value={item.quantity}
-                        onChange={(e) => handleQuantityChange(index, e.target.value)}
-                    />
+                    <p>${item.price.toFixed(2)}</p>
+                    <div className="quantity">
+                        <button onClick={() => setCartItems(
+                            cartItems.map((ci, i) => i === index ? { ...ci, quantity: ci.quantity - 1 } : ci)
+                        )}>-</button>
+                        <p>{item.quantity}</p>
+                        <button onClick={() => setCartItems(
+                            cartItems.map((ci, i) => i === index ? { ...ci, quantity: ci.quantity + 1 } : ci)
+                        )}>+</button>
+                    </div>
                 </div>
             ))}
         </div>
     );
 }
 
-function handleQuantityChange({}){
-  console.log("Quantity changed");
-}
-
 function OrderSummary({ cartItems }) {
     const calculateTotal = () => {
-        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        const itemTotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        const shipping = 6.99;
+        const gst = itemTotal * 0.13;
+        return (itemTotal + shipping + gst).toFixed(2);
     };
 
     return (
         <div className="order-summary">
             <h2>Order Summary</h2>
-            <p>Total: ${calculateTotal()}</p>
+            <p>Items: ${cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</p>
+            <p>Shipping: $6.99</p>
+            <p>Estimated GST: ${(cartItems.reduce((total, item) => total + item.price * item.quantity, 0) * 0.13).toFixed(2)}</p>
+            <p>Order Total: ${calculateTotal()}</p>
         </div>
     );
 }
 
 export default Checkout;
+
