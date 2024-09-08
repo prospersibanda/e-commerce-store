@@ -4,16 +4,16 @@ import '../Styles/Dashboard.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Sidebag from '../components/Sidebag';
 
-const Bag = () => {
+const BagPage = () => {
   return (
     <div className='dashboard'>
     <Sidebar className='sidebar'/>
     <div className='main-content'>
-      
+
     </div>
     <Sidebag className='sidebag'/>
   </div>
   )
 }
 
-export default Bag
+export default BagPage
