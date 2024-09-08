@@ -92,5 +92,5 @@ function OrderSummary({ cartItems }) {
     );
 }
 
-export default Checkout;
+export default CheckoutPage;
 
