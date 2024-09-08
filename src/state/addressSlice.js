@@ -2,11 +2,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  name: 'Prosper',
-  street: 'aew',
-  city: 'Johannesburg',
-  state: 'Gauteng',
-  country: 'SA',
+  name: '',
+  street: '',
+  city: '',
+  state: '',
+  country: '',
   saveAsDefault: false,
 };
 

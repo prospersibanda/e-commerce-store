@@ -1,18 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  items: [
-    {
-      id: 1,
-      name: 'Dell XPS 13',
-      color: 'White',
-      description: 'Lorem ipsum dolor sit amet...',
-      price: 1799.99,
-      quantity: 1,
-      rating: 4.5,
-      image: '/img/products/laptop.png',
-    },
-  ], // Cart items will be stored here
+  items: [], // Cart items will be stored here
   totalQuantity: 1,
   totalPrice: 1799.99, // Calculated based on the initial item
 };

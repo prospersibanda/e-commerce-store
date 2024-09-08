@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { setAddress, toggleSaveAsDefault } from '../state/addressSlice';
 import '../Styles/address.css';
@@ -9,6 +9,9 @@ const Address = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useNavigate hook
   const address = useSelector((state) => state.address);
+  
+  // State to hold validation errors
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,10 +22,27 @@ const Address = () => {
     dispatch(toggleSaveAsDefault());
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!address.name) newErrors.name = "Shipping name is required.";
+    if (!address.street) newErrors.street = "Street name is required.";
+    if (!address.city) newErrors.city = "City is required.";
+    if (!address.state) newErrors.state = "State is required.";
+    if (!address.country) newErrors.country = "Country is required.";
+
+    return newErrors;
+  };
+
   const handleSubmit = () => {
-    // Handle form submission logic
-    alert("Address added successfully!");
-    navigate('/checkout'); // Navigate to the /checkout route
+    const formErrors = validateForm();
+    
+    if (Object.keys(formErrors).length === 0) {
+      alert("Address added successfully!");
+      navigate('/checkout'); // Navigate to the /checkout route
+    } else {
+      setErrors(formErrors); // Set validation errors
+    }
   };
 
   return (
@@ -35,7 +55,10 @@ const Address = () => {
           placeholder="John Maker"
           value={address.name}
           onChange={handleChange}
-        /> <br /> <br />
+        />
+        {errors.name && <p className="error">{errors.name}</p>}
+        <br /> <br />
+
         <label htmlFor="street">Street Name</label> <br />
         <input
           type="text"
@@ -43,7 +66,10 @@ const Address = () => {
           placeholder="123 Place Grond Street"
           value={address.street}
           onChange={handleChange}
-        /> <br /> <br />
+        />
+        {errors.street && <p className="error">{errors.street}</p>}
+        <br /> <br />
+
         <label htmlFor="city">City</label> <br />
         <input
           type="text"
@@ -51,7 +77,10 @@ const Address = () => {
           placeholder="Vermont"
           value={address.city}
           onChange={handleChange}
-        /> <br /> <br />
+        />
+        {errors.city && <p className="error">{errors.city}</p>}
+        <br /> <br />
+
         <label htmlFor="state">State</label> <br />
         <input
           type="text"
@@ -59,7 +88,10 @@ const Address = () => {
           placeholder="California"
           value={address.state}
           onChange={handleChange}
-        /> <br /> <br />
+        />
+        {errors.state && <p className="error">{errors.state}</p>}
+        <br /> <br />
+
         <label htmlFor="country">Country</label> <br />
         <input
           type="text"
@@ -67,7 +99,10 @@ const Address = () => {
           placeholder="United States of America"
           value={address.country}
           onChange={handleChange}
-        /> <br />
+        />
+        {errors.country && <p className="error">{errors.country}</p>}
+        <br />
+
         <span>
           <input
             type="checkbox"
@@ -77,7 +112,9 @@ const Address = () => {
           />
           <p>Save this as your default address</p>
         </span> <br />
+
         <button type="button" onClick={handleSubmit}>Add Address</button> <br /> <br /> <br />
+
         <span className="last-details">
           <a href="/">Back</a>
           <span className="lock">
