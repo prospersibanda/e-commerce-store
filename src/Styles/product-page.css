@@ -33,7 +33,7 @@
 
 .product-img {
   display: flex;
-  align-items: stretch;
+  width: 70%;
   gap: 20px;
 }
 
@@ -78,6 +78,7 @@
 }
 
 .add-to-bag {
-  width: 70%;
-  margin-right: -30px;
+  width: 20vh;
+  margin-left: 100vh;
+  align-items:flex-end;
 }
