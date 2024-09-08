@@ -1,47 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux'; // Import useSelector to fetch data from the Redux store
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import '../Styles/checkout.css';
 
 function CheckoutPage() {
-    const [address, setAddress] = useState("123 Place Grond Street, Vermont, California");
-    const [paymentMethod, setPaymentMethod] = useState("mastercard");
-    const [cartItems, setCartItems] = useState([
-        { name: "Dell XPS 13", price: 1799.99, quantity: 1 },
-        { name: "Iphone 11", price: 999.99, quantity: 1 }
-    ]);
+    const navigate = useNavigate(); // Hook to programmatically navigate
+    const address = useSelector((state) => state.address || {}); // Get address from Redux store
+    const paymentMethod = useSelector((state) => state.paymentMethod || {}); // Get payment method from Redux store
+
+    // Get cart items and total price from Redux store
+    const cartItems = useSelector((state) => state.cart.items || []);
+    const totalPrice = useSelector((state) => state.cart.totalPrice || 0);
 
     const handlePlaceOrder = () => {
-        alert("Order placed successfully!");
+        // Navigate to the /payment route
+        navigate('/payment');
     };
 
     return (
         <div className="checkout-page">
-            <ShippingAddress address={address} setAddress={setAddress} />
-            <PaymentMethod paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
-            <ReviewYourBag cartItems={cartItems} setCartItems={setCartItems} />
-            <OrderSummary cartItems={cartItems} />
+            <ShippingAddress address={address} />
+            <PaymentMethod paymentMethod={paymentMethod} />
+            <ReviewYourBag cartItems={cartItems} />
+            <OrderSummary cartItems={cartItems} totalPrice={totalPrice} />
             <button onClick={handlePlaceOrder}>Place your order</button>
         </div>
     );
 }
 
-function ShippingAddress({ address, setAddress }) {
+function ShippingAddress({ address }) {
     return (
         <div className="shipping-address">
             <h2>Shipping Address</h2>
             <p>John Maker</p>
-            <p>{address}</p>
-            <p>United States of America</p>
+            <p>{address.street || 'Street Not Provided'}, {address.city || 'City Not Provided'}, {address.state || 'State Not Provided'}, {address.country || 'Country Not Provided'}</p>
             <button>Change</button>
         </div>
     );
 }
 
-function PaymentMethod({ paymentMethod, setPaymentMethod }) {
+function PaymentMethod({ paymentMethod }) {
     return (
         <div className="payment-method">
             <h2>Payment Method</h2>
-            <p><i className="fa fa-credit-card"></i> Mastercard ending in 1252</p>
-            <p><i className="fa fa-gift"></i> $53.21 gift card balance</p>
+            <p>
+                <i className="fa fa-credit-card"></i> 
+                {paymentMethod.type || 'Type Not Provided'} ending in {paymentMethod.lastFourDigits || '####'}
+            </p>
+            <p>
+                <i className="fa fa-gift"></i> 
+                ${paymentMethod.giftCardBalance || '0.00'} gift card balance
+            </p>
             <label>
                 <input type="checkbox" checked /> Billing address same as Shipping Address
             </label>
@@ -50,47 +59,43 @@ function PaymentMethod({ paymentMethod, setPaymentMethod }) {
     );
 }
 
-function ReviewYourBag({ cartItems, setCartItems }) {
+function ReviewYourBag({ cartItems }) {
     return (
         <div className="review-your-bag">
             <h2>Review Your Bag</h2>
-            {cartItems.map((item, index) => (
-                <div key={index} className="cart-item">
-                    <p>{item.name}</p>
-                    <p>${item.price.toFixed(2)}</p>
-                    <div className="quantity">
-                        <button onClick={() => setCartItems(
-                            cartItems.map((ci, i) => i === index ? { ...ci, quantity: ci.quantity - 1 } : ci)
-                        )}>-</button>
-                        <p>{item.quantity}</p>
-                        <button onClick={() => setCartItems(
-                            cartItems.map((ci, i) => i === index ? { ...ci, quantity: ci.quantity + 1 } : ci)
-                        )}>+</button>
+            {cartItems.length > 0 ? (
+                cartItems.map((item) => (
+                    <div key={item.id} className="cart-item">
+                        <p>{item.name}</p>
+                        <p>${item.price.toFixed(2)}</p>
+                        <div className="quantity">
+                            <p>Quantity: {item.quantity}</p>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))
+            ) : (
+                <p>Your bag is empty</p>
+            )}
         </div>
     );
 }
 
-function OrderSummary({ cartItems }) {
+function OrderSummary({ cartItems, totalPrice }) {
     const calculateTotal = () => {
-        const itemTotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
         const shipping = 6.99;
-        const gst = itemTotal * 0.13;
-        return (itemTotal + shipping + gst).toFixed(2);
+        const gst = totalPrice * 0.13; // 13% GST on total price
+        return (totalPrice + shipping + gst).toFixed(2);
     };
 
     return (
         <div className="order-summary">
             <h2>Order Summary</h2>
-            <p>Items: ${cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</p>
+            <p>Items: ${totalPrice.toFixed(2)}</p>
             <p>Shipping: $6.99</p>
-            <p>Estimated GST: ${(cartItems.reduce((total, item) => total + item.price * item.quantity, 0) * 0.13).toFixed(2)}</p>
+            <p>Estimated GST: ${(totalPrice * 0.13).toFixed(2)}</p>
             <p>Order Total: ${calculateTotal()}</p>
         </div>
     );
 }
 
 export default CheckoutPage;
-

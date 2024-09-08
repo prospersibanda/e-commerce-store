@@ -7,6 +7,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
 import Sidebag from '../components/Sidebag';
 import { useSelector } from 'react-redux';
+import '../Styles/Dashboard.css';
 
 const ProductPage = () => {
   const { id } = useParams(); // Get product ID from the URL parameter
@@ -21,7 +22,7 @@ const ProductPage = () => {
 
   return (
     <div className="detail-page">
-      <Sidebar />
+       <Sidebar className='sidebar'/>
       <div className="product-page-section">
         <div className="product-img">
           <span className="back-text">
@@ -66,7 +67,7 @@ const ProductPage = () => {
           aliquip ex ea commodo consequat.
         </p>
       </div>
-      <Sidebag />
+      <Sidebag className='sidebag'/>
     </div>
   );
 };
