@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import '../Styles/Dashboard/sidebag.css';
+import '../Styles/sidebar.css';
+import Sidebar from '../components/Sidebar';
+import Sidebag from '../components/Sidebag';
 
 const ProductPage = () => {
   return (
-    <div>
+    <div className='detail-page'>
+      <Sidebar/>
       <div className="product-page-section">
         <img src="./products/img/watch.png" alt="A SE edition time-piece."/>
         <h1>Apple Watch</h1>
@@ -45,6 +50,7 @@ const ProductPage = () => {
           sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </div>
+      <Sidebag/>
     </div>
   );
 }
