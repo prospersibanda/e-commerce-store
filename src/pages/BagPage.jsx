@@ -9,7 +9,8 @@ const BagPage = () => {
   return (
     <div className='dashboard'>
     <Sidebar className='sidebar'/>
-    <div className='main-content'>
+    <div className='main-content bag-content'>
+    <h2>Check your Bag Items</h2>
       <BagItems/>
     </div>
     <Sidebag className='sidebag'/>

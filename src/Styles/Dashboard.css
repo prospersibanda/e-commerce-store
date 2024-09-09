@@ -4,6 +4,16 @@ body{
 html, body {
   overflow-x: hidden;
 }
+.main-content h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+.bag-content{
+  margin-top: 80px !important;
+}
 
 .dashboard{
     display: flex;

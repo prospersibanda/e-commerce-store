@@ -6,7 +6,8 @@ import '../Styles/product-page.css';
 import { FaArrowLeft } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
 import Sidebag from '../components/Sidebag';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'; // Import useDispatch
+import { addToCart } from '../state/cartSlice'; // Import addToCart action
 import '../Styles/Dashboard.css';
 
 const ProductPage = () => {
@@ -14,6 +15,12 @@ const ProductPage = () => {
   const product = useSelector((state) =>
     state.products.items.find((item) => item.id === parseInt(id))
   ); // Find the product based on the ID
+  const dispatch = useDispatch(); // Initialize dispatch
+
+  // Handle adding product to cart
+  const handleAddToCart = () => {
+    dispatch(addToCart(product)); // Dispatch the addToCart action with the current product
+  };
 
   // If the product is not found, return an error message
   if (!product) {
@@ -48,24 +55,19 @@ const ProductPage = () => {
               <span className="fa fa-star"></span>
               <span className="fa fa-star"></span>
             </div>
-            <h4 className="product-price">{product.price}</h4>
-            <p className="product-p">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <h4 className="product-price">{`$${product.price.toFixed(2)}`}</h4>
+            <p className="product-p">{product.detailedDescription}</p>
           </div>
         </div>
-        <button className="add-to-bag">
-          <i className="fa-solid fa-bag-shopping-plus"></i>Add to bag
+
+        {/* Add to bag button */}
+        <button className="add-to-bag" onClick={handleAddToCart}>
+          <i className="fa-solid fa-bag-shopping-plus"></i> Add to bag
         </button>
+        
         <hr />
         <h2>Description</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
+        <p>{product.longDescription}</p>
       </div>
       <Sidebag className='sidebag'/>
     </div>

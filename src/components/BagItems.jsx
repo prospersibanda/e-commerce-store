@@ -1,19 +1,29 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'; // Import useSelector to access Redux state
+import { useSelector, useDispatch } from 'react-redux'; // Import useSelector and useDispatch
+import { increaseQuantity, decreaseQuantity } from '../state/cartSlice'; // Import actions
 import '../Styles/bag.css'; // Import the CSS file for styling
 
 const BagItems = () => {
-  // Access the cart items from Redux store
-  const items = useSelector((state) => state.cart.items);
+  const items = useSelector((state) => state.cart.items); // Access the cart items from Redux store
+  const dispatch = useDispatch(); // Initialize dispatch
 
   // Fallback if the cart is empty or items are undefined
   if (!items || items.length === 0) {
     return <p>Your bag is empty.</p>;
   }
 
+  // Handle increasing product quantity
+  const handleIncrease = (id) => {
+    dispatch(increaseQuantity(id)); // Dispatch increaseQuantity action
+  };
+
+  // Handle decreasing product quantity
+  const handleDecrease = (id) => {
+    dispatch(decreaseQuantity(id)); // Dispatch decreaseQuantity action
+  };
+
   return (
     <div className="bag-container">
-      <h2>Check your Bag Items</h2>
       {items.map((item) => (
         <div key={item.id} className="bag-items-con">
           <div className="bag-image">
@@ -30,9 +40,9 @@ const BagItems = () => {
               ${item.price.toFixed(2)} <span> x {item.quantity}</span>
             </p>
             <div className="quantity-controls">
-              <button>-</button>
+              <button onClick={() => handleDecrease(item.id)}>-</button>
               <span>{item.quantity}</span>
-              <button>+</button>
+              <button onClick={() => handleIncrease(item.id)}>+</button>
             </div>
           </div>
         </div>
