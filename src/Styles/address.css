@@ -12,7 +12,9 @@ span {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
+.address-btn{
+  width: 41em;
+}
 .address-form {
   background-color: white;
   padding-top: 20px;

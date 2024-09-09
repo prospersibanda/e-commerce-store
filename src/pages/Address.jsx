@@ -113,7 +113,7 @@ const Address = () => {
           <p>Save this as your default address</p>
         </span> <br />
 
-        <button type="button" onClick={handleSubmit}>Add Address</button> <br /> <br /> <br />
+        <button className="address-btn" type="button" onClick={handleSubmit}>Add Address</button> <br /> <br /> <br />
 
         <span className="last-details">
           <a href="/">Back</a>
