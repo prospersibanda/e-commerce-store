@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Styles/sidebar.css';
-import { FaShoppingBag, FaBars, FaStore, FaLock, FaSignOutAlt } from 'react-icons/fa';
+import { FaShoppingBag, FaBars, FaStore, FaSignOutAlt } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import logoImage from '../Assets/logo.png';
 
