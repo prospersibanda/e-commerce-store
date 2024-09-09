@@ -32,7 +32,7 @@ function ShippingAddress({ address }) {
     return (
         <div className="shipping-address">
             <h2>Shipping Address</h2>
-            <p>John Maker</p>
+            <p>{address.name}</p>
             <p>{address.street || 'Street Not Provided'}, {address.city || 'City Not Provided'}, {address.state || 'State Not Provided'}, {address.country || 'Country Not Provided'}</p>
             <button>Change</button>
         </div>
