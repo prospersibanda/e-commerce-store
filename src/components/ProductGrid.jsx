@@ -24,6 +24,7 @@ const ProductGrid = () => {
           </div>
           <div className="product-info">
             <h3 className="product-name">{product.name}</h3>
+            {/* Use shortDescription instead of description */}
             <p className="product-description">{product.description}</p>
             <div className="product-price">
               {/* Ensure price is a number and display it properly */}
