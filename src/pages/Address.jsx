@@ -1,40 +1,47 @@
 import React, { useState } from "react";
-import "../Styles/address.css";
-import { FaLock } from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
+import { setAddress, toggleSaveAsDefault } from '../state/addressSlice';
+import '../Styles/address.css';
+import { FaLock } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
 const Address = () => {
-  const [formData, setFormData] = useState({
-    shippingName: "",
-    streetName: "",
-    city: "",
-    state: "",
-    country: "",
-    saveAsDefault: false,
-  });
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Initialize useNavigate hook
+  const address = useSelector((state) => state.address);
+  
+  // State to hold validation errors
+  const [errors, setErrors] = useState({});
 
-  const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch(setAddress({ [name]: value }));
   };
 
-  const validate = () => {
-    let formErrors = {};
-
-    if (!formData.name.trim()) formErrors.name = "Shipping Name is required";
-    if (!formData.streetName.trim())
-      formErrors.streetName = "Street Name is required";
-    if (!formData.city.trim()) formErrors.city = "City is required";
-    if (!formData.state.trim()) formErrors.state = "State is required";
-    if (!formData.country.trim()) formErrors.country = "Country is required";
+  const handleSaveAsDefault = () => {
+    dispatch(toggleSaveAsDefault());
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (validate()) {
-      console.log("Form submitted:", formData);
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!address.name) newErrors.name = "Shipping name is required.";
+    if (!address.street) newErrors.street = "Street name is required.";
+    if (!address.city) newErrors.city = "City is required.";
+    if (!address.state) newErrors.state = "State is required.";
+    if (!address.country) newErrors.country = "Country is required.";
+
+    return newErrors;
+  };
+
+  const handleSubmit = () => {
+    const formErrors = validateForm();
+    
+    if (Object.keys(formErrors).length === 0) {
+      alert("Address added successfully!");
+      navigate('/checkout'); // Navigate to the /checkout route
+    } else {
+      setErrors(formErrors); // Set validation errors
     }
   };
 
@@ -44,64 +51,70 @@ const Address = () => {
         <label htmlFor="name">Shipping Name</label> <br />
         <input
           type="text"
-          placeholder="John Maker"
           name="name"
-          value={formData.name}
+          placeholder="John Maker"
+          value={address.name}
           onChange={handleChange}
-          required
-        />{" "}
+        />
+        {errors.name && <p className="error">{errors.name}</p>}
         <br /> <br />
-        <label htmlFor="street-name">Street Name</label> <br />
+
+        <label htmlFor="street">Street Name</label> <br />
         <input
           type="text"
-          name="streetName"
-          placeholder="123 Plae Grond Stret"
-          required
-          value={formData.streetName}
+          name="street"
+          placeholder="123 Place Grond Street"
+          value={address.street}
           onChange={handleChange}
-        />{" "}
+        />
+        {errors.street && <p className="error">{errors.street}</p>}
         <br /> <br />
+
         <label htmlFor="city">City</label> <br />
         <input
           type="text"
-          placeholder="Vermont"
           name="city"
-          value={formData.city}
+          placeholder="Vermont"
+          value={address.city}
           onChange={handleChange}
-          required
-        />{" "}
+        />
+        {errors.city && <p className="error">{errors.city}</p>}
         <br /> <br />
+
         <label htmlFor="state">State</label> <br />
         <input
           type="text"
-          placeholder="California"
           name="state"
-          value={formData.state}
+          placeholder="California"
+          value={address.state}
           onChange={handleChange}
-          required
-        />{" "}
+        />
+        {errors.state && <p className="error">{errors.state}</p>}
         <br /> <br />
+
         <label htmlFor="country">Country</label> <br />
         <input
           type="text"
-          placeholder="United States of America"
           name="country"
-          value={formData.country}
+          placeholder="United States of America"
+          value={address.country}
           onChange={handleChange}
-          required
-        />{" "}
+        />
+        {errors.country && <p className="error">{errors.country}</p>}
         <br />
+
         <span>
           <input
             type="checkbox"
             name="saveAsDefault"
-            value={formData.saveAsDefault}
-            onChange={handleChange}
-          />{" "}
+            checked={address.saveAsDefault}
+            onChange={handleSaveAsDefault}
+          />
           <p>Save this as your default address</p>
-        </span>{" "}
-        <br />
-        <input type="button" value="Add Address" /> <br /> <br /> <br />
+        </span> <br />
+
+        <button type="button" onClick={handleSubmit}>Add Address</button> <br /> <br /> <br />
+
         <span className="last-details">
           <a href="/">Back</a>
           <span className="lock">

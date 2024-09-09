@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import ProductPage from './pages/ProductPage';
 import Payment from './pages/Payment';
-import Checkout from './pages/Checkout';
 import Address from './pages/Address';
 import BagPage from './pages/BagPage';
+import CheckoutPage from './pages/Checkout';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
 
           {/* Other routes remain unchanged */}
           <Route path="/bag" element={<BagPage />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/address" element={<Address />} />
           <Route path="/payment" element={<Payment />} />
         </Routes>

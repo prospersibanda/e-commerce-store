@@ -24,6 +24,7 @@
 
 .sidebar-icon.active {
   background-color: #000000; /* Black background for active icon */
+  padding-bottom: 16px;
 }
 
 .sidebar-icon.active .icon {
@@ -31,7 +32,7 @@
 }
 
 .icon {
-  font-size: 28px;
+  font-size: 4em;
   color: #000000; /* Black color for inactive icons */
 }
 

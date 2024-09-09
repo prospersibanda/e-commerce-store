@@ -7,10 +7,10 @@ import logoImage from '../Assets/logo.png';
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <NavLink to="/" className={({ isActive }) => `sidebar-icon ${isActive ? 'active' : ''}`}>
+      <NavLink to="/" className={({ isActive }) => `sidebar-icon ${isActive ? '' : ''}`}>
         <img src={logoImage} className="icon top-icon" alt="Logo" />
       </NavLink>
-      <NavLink to="/menu" className={({ isActive }) => `sidebar-icon ${isActive ? 'active' : ''}`}>
+      <NavLink to="/" className={({ isActive }) => `sidebar-icon ${isActive ? '' : ''}`}>
         <FaBars className="icon" />
       </NavLink>
       <NavLink to="/" className={({ isActive }) => `sidebar-icon ${isActive ? 'active' : ''}`}>
